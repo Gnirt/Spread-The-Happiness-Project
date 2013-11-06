@@ -53,5 +53,6 @@ describe "Static pages" do
         visit '/static_pages/contact'
         expect(page).to have_title("#{base_title} | Contact")
       end
+    end
   end
 end
