@@ -1,1 +1,1 @@
-# Ruby on Rails Tutorial: sample application
+# Spread happiness application

@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   has_many :microposts, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
+  has_many :encounter, :class_name => 'Encounter', foreign_key: "user1_id", dependent: :destroy
+  has_many :encounter2, :class_name => 'Encounter', foreign_key: "user2_id", dependent: :destroy
   
   has_many :reverse_relationships, foreign_key: "followed_id",
                                    class_name:  "Relationship",
@@ -14,6 +16,7 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 6 }
+
   has_secure_password
   
   def User.new_remember_token
@@ -38,6 +41,14 @@ class User < ActiveRecord::Base
   
   def unfollow!(other_user)
     relationships.find_by(followed_id: other_user.id).destroy
+  end
+  
+  def encounter!(other_user, address)
+    encounter.create!(user1_id: self.id, user2_id: other_user.id, address: address)
+  end
+  
+  def encounter_list
+    encounter + encounter2
   end
 
   private

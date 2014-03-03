@@ -1,7 +1,9 @@
 @import "bootstrap";
 
 /* mixins, variables, etc. */
-
+$baseColor: #fff806;
+$mediumDarkBaseColor: #ccc605;
+$darkBaseColor: #7f7e46;
 $grayMediumLight: #eaeaea;
 
 @mixin box_sizing {
@@ -62,6 +64,16 @@ p {
   line-height: 1.7em;
 }
 
+strong {
+	color: $mediumDarkBaseColor;
+}
+
+a {
+	color: $mediumDarkBaseColor;
+	&:hover {
+		color: $darkBaseColor;
+	}
+}
 
 /* header */
 
@@ -69,16 +81,29 @@ p {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: yellow;
+  color: $baseColor;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
   line-height: 1;
   &:hover {
-    color: yellow;
+    color: $baseColor;
     text-decoration: none;
   }
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-submenu:hover > a, .dropdown-submenu:focus > a {
+    background-color: $darkBaseColor;
+    background-image: linear-gradient(to bottom, $baseColor, $mediumDarkBaseColor);
+    background-repeat: repeat-x;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.navbar-inverse .nav > li > a:focus, .navbar-inverse .nav > li > a:hover {
+    background-color: rgba(0, 0, 0, 0);
+    color: $baseColor;
 }
 
 /* footer */
@@ -91,7 +116,7 @@ footer {
   a {
     color: $gray;
     &:hover {
-      color: $grayDarker;
+      color: $mediumDarkBaseColor;
     }
   }
   small {
@@ -155,7 +180,7 @@ aside {
     }
     &:hover {
       text-decoration: none;
-      color: $blue;
+      color: $mediumDarkBaseColor;
     }
   }
   strong {
@@ -250,3 +275,10 @@ aside {
   padding-left: 30px;
   color: $grayLight;
 }
+
+#map label { width: auto; display:inline; }
+#map img { max-width: none; }
+
+/* bootstrap hack */
+
+.btn-primary {@include buttonBackground($baseColor, $mediumDarkBaseColor); }

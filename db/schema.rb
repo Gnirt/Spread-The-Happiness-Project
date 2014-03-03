@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228092008) do
+ActiveRecord::Schema.define(version: 20140301102950) do
+
+  create_table "encounters", force: true do |t|
+    t.integer  "user1_id"
+    t.integer  "user2_id"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "address"
+  end
+
+  add_index "encounters", ["user1_id", "user2_id"], name: "index_encounters_on_user1_id_and_user2_id", unique: true
+  add_index "encounters", ["user1_id"], name: "index_encounters_on_user1_id"
+  add_index "encounters", ["user2_id"], name: "index_encounters_on_user2_id"
 
   create_table "microposts", force: true do |t|
     t.string   "content"

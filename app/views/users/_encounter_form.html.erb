@@ -1,0 +1,14 @@
+<% unless current_user?(@user) || current_user.encounter_list.any?{|e| (e.user1_id == @user.id || e.user2_id == @user.id)} %>
+
+	<%= form_for(current_user.encounter.build(user2_id: @user.id)) do |f| %>
+
+  	<%= f.hidden_field :user2_id %>
+		<%= f.hidden_field :latitude %>
+		<%= f.hidden_field :longitude %>
+  
+		<%= f.label :address %>
+  	<%= f.text_field :address, :placeholder => "Paris, france" %>
+  
+		<%= f.submit "Create encounter", class: "btn btn-large btn-primary" %>
+	<% end %>
+<% end %>

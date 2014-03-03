@@ -3,6 +3,7 @@
   <div class="field">
     <%= f.text_area :content, placeholder: "Compose new micropost..." %>
   </div>
+  <%= javascript_include_tag "microposts"%>
   <span id="countdown"></span>
   <%= f.submit "Post", class: "btn btn-large btn-primary" %>
 <% end %>
