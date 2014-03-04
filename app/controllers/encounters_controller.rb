@@ -8,5 +8,6 @@ class EncountersController < ApplicationController
   end
 
   def destroy
+    
   end
 end

@@ -51,6 +51,14 @@ class User < ActiveRecord::Base
     encounter + encounter2
   end
 
+  def self.search(search)
+    if search
+      where('name LIKE ?', "%#{search}%")
+    else
+      scoped
+    end
+  end
+
   private
 
     def create_remember_token
