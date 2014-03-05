@@ -59,19 +59,6 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
-  def encounters
-    @title = "Encounters"
-    @user = User.find(params[:id])
-    @encounters = Encounter.find(:all, :conditions => ["user1_id = ? OR user2_id = ?", @user.id, @user.id])
-    @hash = Gmaps4rails.build_markers(@encounters) do |e, marker|
-      marker.lat e.latitude
-      marker.lng e.longitude
-      marker.infowindow User.find_by(id: e.user1_id).name + " encounter " + User.find_by(id: e.user2_id).name + " at " + e.address
-    end
-
-    render 'show_encounters'
-  end
-  
   private
 
     def user_params

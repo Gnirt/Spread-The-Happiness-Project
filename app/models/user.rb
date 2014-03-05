@@ -43,10 +43,6 @@ class User < ActiveRecord::Base
     relationships.find_by(followed_id: other_user.id).destroy
   end
   
-  def encounter!(other_user, address)
-    encounter.create!(user1_id: self.id, user2_id: other_user.id, address: address)
-  end
-  
   def encounter_list
     encounter + encounter2
   end

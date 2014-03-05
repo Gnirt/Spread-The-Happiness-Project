@@ -6,8 +6,11 @@ SampleApp::Application.routes.draw do
   resources :encounters,    only: [:create, :destroy]
   resources :users do
     member do
-      get :following, :followers, :encounters
+      get :following, :followers
     end
+    
+    resources :encounters, only: [:destroy, :index]
+
   end
   
   root  'static_pages#home'

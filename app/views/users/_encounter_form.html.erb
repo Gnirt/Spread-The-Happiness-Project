@@ -2,13 +2,15 @@
 
 	<%= form_for(current_user.encounter.build(user2_id: @user.id)) do |f| %>
 
+		<%= render 'shared/error_messages', object: f.object %>
+
   	<%= f.hidden_field :user2_id %>
 		<%= f.hidden_field :latitude %>
 		<%= f.hidden_field :longitude %>
   
 		<%= f.label :address %>
   	<%= f.text_field :address, :placeholder => "Ex : Paris, france" %>
-  
+
 		<%= f.submit "Create encounter", class: "btn btn-large btn-primary" %>
 	<% end %>
 <% end %>
