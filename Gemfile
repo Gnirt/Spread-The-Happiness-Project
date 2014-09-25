@@ -9,6 +9,7 @@ gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 gem 'gmaps4rails', '2.1.2'
 gem 'geocoder', '1.1.9'
+gem 'bootstrap-datepicker-rails'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

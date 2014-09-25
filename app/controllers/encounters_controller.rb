@@ -4,7 +4,7 @@ class EncountersController < ApplicationController
 
   def create
     @user = User.find(params[:encounter][:user2_id])
-    @encounter = Encounter.new(:user1_id => current_user.id, :user2_id => @user.id, :address => params[:encounter][:address])
+    @encounter = Encounter.new(:user1_id => current_user.id, :user2_id => @user.id, :address => params[:encounter][:address], :date => params[:encounter][:date])
     if @encounter.valid?
       @encounter.save!
       flash[:success] = "Encounter saved"
@@ -28,7 +28,8 @@ class EncountersController < ApplicationController
     @hash = Gmaps4rails.build_markers(@encounters) do |e, marker|
       marker.lat e.latitude
       marker.lng e.longitude
-      marker.infowindow User.find(e.user1_id).name + " encounter " + User.find(e.user2_id).name + " at " + e.address
+      marker.title User.find(e.user1_id).name + " encounter " + User.find(e.user2_id).name
+      marker.infowindow e.date.to_formatted_s(:long_ordinal) + ": " + User.find(e.user1_id).name + " encounter " + User.find(e.user2_id).name + " at " + e.address
     end
   end
   

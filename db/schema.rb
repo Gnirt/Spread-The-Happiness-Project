@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140301102950) do
+ActiveRecord::Schema.define(version: 20140305153440) do
 
   create_table "encounters", force: true do |t|
     t.integer  "user1_id"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20140301102950) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "address"
+    t.date     "date"
   end
 
   add_index "encounters", ["user1_id", "user2_id"], name: "index_encounters_on_user1_id_and_user2_id", unique: true
